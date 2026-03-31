@@ -1,0 +1,27 @@
+# DevOps Portfolio - Rohit Korke
+
+## Projects Included:
+
+### 1. CI/CD Pipeline
+- Jenkins + Docker + AWS
+- Automated build and deployment
+
+### 2. Docker Practice
+- Image creation
+- Container management
+
+### 3. AWS Deployment
+- EC2 setup
+- Application deployment
+
+## Tools Used:
+- Jenkins
+- Docker
+- AWS EC2
+- GitHub
+
+## Objective:
+This repository demonstrates hands-on DevOps skills with real-world project implementations.
+
+## Author:
+Rohit Korke
