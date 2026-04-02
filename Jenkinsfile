@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "portfolio-image"
-        DOCKERHUB_USER = "yourdockerhubusername"     // <-- apna username dal
+        DOCKERHUB_USER = "rohitkorke"     // <-- apna username dal
         CONTAINER_NAME = "portfolio-container"
         EC2_INSTANCE_ID = "i-02ac3288e6eacc6f9"      // <-- apna EC2 ID dal
         AWS_REGION = "ap-south-1"
@@ -13,7 +13,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/rohitkorke/devops-portfolio.git'
+                git branch: 'main', url: 'https://github.com/rohitkorke/devops-portfolio.git'
             }
         }
 
