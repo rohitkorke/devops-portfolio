@@ -1,16 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Rohit DevOps Portfolio</title>
-</head>
-<body style="text-align:center; font-family:Arial;">
+pipeline {
+    agent any
 
-    <h1>🚀 Rohit Korke - DevOps Engineer</h1>
-    <h2>CI/CD | Docker | AWS | Jenkins</h2>
+    environment {
+        IMAGE_NAME = "portfolio-image"
+        CONTAINER_NAME = "portfolio-container"
+        EC2_INSTANCE_ID = "i-02ac3288e6eacc6f9" // replace with your EC2 ID
+        AWS_REGION = "ap-south-1"               // replace with your region
+    }
 
-    <p>This is my DevOps Portfolio Project</p>
+    stages {
+        stage('Deploy to EC2 via SSM') {
+            steps {
+                sh """
+                aws ssm send-command \
+                  --targets Key=instanceIds,Values=${EC2_INSTANCE_ID} \
+                  --document-name AWS-RunShellScript \
+                  --region ${AWS_REGION} \
+                  --comment "Deploy portfolio container" \
+                  --parameters 'commands=[
+                    "docker stop ${CONTAINER_NAME} || true",
+                    "docker rm ${CONTAINER_NAME} || true",
+                    "docker pull ${IMAGE_NAME} || true",
+                    "docker run -d -p 80:80 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
+                  ]'
+                """
+            }
+        }
+    }
 
-    <p>🔥 Deployed using Docker</p>
-
-</body>
-</html>
+    post {
+        success {
+            echo "✅ Deployment Successful!"
+        }
+        failure {
+            echo "❌ Deployment Failed!"
+        }
+    }
+}
