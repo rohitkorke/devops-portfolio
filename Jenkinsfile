@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "portfolio-image"
-        DOCKERHUB_USER = "rohitkorke"     // <-- apna username
+        DOCKERHUB_USER = "456776544567"     // <-- apna username
         CONTAINER_NAME = "portfolio-container"
         EC2_INSTANCE_ID = "i-02ac3288e6eacc6f9"  // <-- apna EC2 ID
         AWS_REGION = "ap-south-1"
