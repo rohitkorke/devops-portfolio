@@ -3,9 +3,9 @@ pipeline {
 
     environment {
         IMAGE_NAME = "portfolio-image"
-        DOCKERHUB_USER = "rohitkorke"     // <-- apna username dal
+        DOCKERHUB_USER = "rohitkorke"     // <-- apna username
         CONTAINER_NAME = "portfolio-container"
-        EC2_INSTANCE_ID = "i-02ac3288e6eacc6f9"      // <-- apna EC2 ID dal
+        EC2_INSTANCE_ID = "i-02ac3288e6eacc6f9"  // <-- apna EC2 ID
         AWS_REGION = "ap-south-1"
     }
 
@@ -27,10 +27,10 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'docker',
-                    usernameVariable: 'DOCKERHUB_USER',
-                    passwordVariable: 'DOCKERHUB_PASSWORD'
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    sh "echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USER --password-stdin"
+                    sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
                 }
             }
         }
